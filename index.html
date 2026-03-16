@@ -196,7 +196,7 @@
       <div class="timeline-h" id="tl">
 
         <!-- ══ STOP 1: Michigan Drill — card ABOVE ══ -->
-        <div class="stop" data-era="michigan">
+        <div class="stop" data-era="michigan" data-thumb="assets/thumb-michigan.jpg">
           <div class="stop-top">
             <div class="card" tabindex="0" onclick="focusStop(this.closest('.stop'))">
               <button class="card-back" onclick="unfocus(event)" aria-label="Back to timeline">
@@ -253,7 +253,7 @@
         </div>
 
         <!-- ══ STOP 2: CAG — card BELOW ══ -->
-        <div class="stop" data-era="cag">
+        <div class="stop" data-era="cag" data-thumb="assets/thumb-cag.jpg">
           <div class="stop-top"></div>
           <div class="stop-node-row">
             <div class="tick-up"></div>
@@ -308,7 +308,7 @@
         </div>
 
         <!-- ══ STOP 3: QPG LLC — card ABOVE ══ -->
-        <div class="stop" data-era="qpg">
+        <div class="stop" data-era="qpg" data-thumb="assets/thumb-qpg.jpg">
           <div class="stop-top">
             <div class="card" tabindex="0" onclick="focusStop(this.closest('.stop'))">
               <button class="card-back" onclick="unfocus(event)" aria-label="Back to timeline">
@@ -349,7 +349,6 @@
                 </div>
                 <div class="sites">
                   <a href="https://avicotech.com" target="_blank" rel="noopener noreferrer" class="site-a">↗ avicotech.com</a>
-                  <a href="https://buytesmart.com" target="_blank" rel="noopener noreferrer" class="site-a">↗ buytesmart.com</a>
                 </div>
               </div>
               <span class="click-hint">Click to expand</span>
@@ -367,7 +366,7 @@
         </div>
 
         <!-- ══ STOP 4: TheraMax — card BELOW ══ -->
-        <div class="stop" data-era="theramax">
+        <div class="stop" data-era="theramax" data-thumb="assets/thumb-theramax.jpg">
           <div class="stop-top"></div>
           <div class="stop-node-row">
             <div class="tick-up"></div>
@@ -375,7 +374,7 @@
               <span class="node-initials">TM</span>
             </a>
             <div class="tick-down"></div>
-            <div class="node-date">2023<br>Present</div>
+            <div class="node-date">2023<br>Jul 2025</div>
           </div>
           <div class="stop-bottom">
             <div class="card" tabindex="0" onclick="focusStop(this.closest('.stop'))">
@@ -385,7 +384,7 @@
               </button>
               <div class="card-co">TheraMax Miami</div>
               <div class="card-role">Business Development · Digital Marketing · Analytics</div>
-              <span class="card-period">Aug 2023 – Present</span>
+              <span class="card-period">Aug 2023 – Jul 2025</span>
               <div class="card-loc">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 2353 Coral Way, Miami, FL · Miami's first robotic pain clinic
@@ -425,7 +424,7 @@
         </div>
 
         <!-- ══ STOP 5: RPT Clinic — card ABOVE ══ -->
-        <div class="stop" data-era="rpt">
+        <div class="stop" data-era="rpt" data-thumb="assets/thumb-rpt.jpg">
           <div class="stop-top">
             <div class="card" tabindex="0" onclick="focusStop(this.closest('.stop'))">
               <button class="card-back" onclick="unfocus(event)" aria-label="Back to timeline">
@@ -483,7 +482,7 @@
         </div>
 
         <!-- ══ STOP 6: Precision Health Leads — card BELOW ══ -->
-        <div class="stop" data-era="precision">
+        <div class="stop" data-era="precision" data-thumb="assets/thumb-phl.jpg">
           <div class="stop-top"></div>
           <div class="stop-node-row">
             <div class="tick-up"></div>
@@ -670,6 +669,28 @@ function focusStop(stop) {
   }
   if (tagsEl)  skillTarget.appendChild(tagsEl.cloneNode(true));
   if (sitesEl) skillTarget.appendChild(sitesEl.cloneNode(true));
+
+  // ─ Populate site thumbnail (re-create wrap since skillTarget was cleared) ─
+  const thumb = stop.dataset.thumb;
+  const thumbWrap = document.createElement('div');
+  thumbWrap.id = 'ov-thumb-wrap';
+  thumbWrap.className = 'ov-thumb-wrap';
+  skillTarget.appendChild(thumbWrap);
+  if (thumb) {
+    const primaryHref = sitesEl?.querySelector('a')?.getAttribute('href') || '#';
+    const img = document.createElement('img');
+    img.src = thumb;
+    img.alt = co + ' website preview';
+    img.className = 'ov-thumb';
+    img.loading = 'lazy';
+    const a = document.createElement('a');
+    a.href = primaryHref;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.className = 'ov-thumb-link';
+    a.appendChild(img);
+    thumbWrap.appendChild(a);
+  }
 
   // ─ Show overlay + backdrop ─
   // Mark focused stop (for dimming siblings)
