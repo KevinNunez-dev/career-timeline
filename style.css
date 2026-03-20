@@ -1036,3 +1036,31 @@ a { color: inherit; text-decoration: none; }
   object-fit: cover;
   object-position: top;
 }
+
+/* ── Resume Download Button ── */
+.resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--bg);
+  background: var(--text);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.resume-btn:hover  { opacity: 0.82; transform: translateY(-1px); }
+.resume-btn:active { opacity: 1;    transform: translateY(0); }
+.resume-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
