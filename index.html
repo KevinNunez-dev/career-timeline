@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 
 <meta charset="UTF-8">
@@ -623,7 +623,7 @@
 (function(){
   const btn = document.querySelector('[data-theme-toggle]');
   const html = document.documentElement;
-  let mode = html.getAttribute('data-theme') || 'light';
+  let mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   function setIcon(m) {
     if (!btn) return;
     btn.innerHTML = m === 'dark'
